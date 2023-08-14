@@ -24,7 +24,7 @@ def store():
         print(request.data.decode())
         data = json.loads(request.data.decode())
         if "name" and "password" not in data:
-            return 400
+            return "Bad Request", 400
         
         bobj = bcrypt.gensalt()
         hashed = bcrypt.hashpw(data["password"].encode(), bobj)
@@ -34,7 +34,7 @@ def store():
             users = json.load(f)
             users["servers"].append(data)
     
-    return 200
+    return "OK", 200
 
 
 
