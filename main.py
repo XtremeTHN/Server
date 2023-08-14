@@ -21,6 +21,7 @@ def run():
 @app.route("/store", methods=["POST"])
 def store():
     if request.method == "POST":
+        print(request.data.decode())
         data = json.loads(request.data.decode())
         if "name" and "password" not in data:
             return 400
