@@ -21,9 +21,8 @@ def run():
 @app.route("/store", methods=["POST"])
 def store():
     if request.method == "POST":
-        print(request.data.decode())
-        data = json.loads(request.data.decode())
-        if "name" and "password" not in data:
+        data = request.get_json()
+        if "name" not in data or "password" not in data:
             return "Bad Request", 400
         
         bobj = bcrypt.gensalt()
@@ -33,6 +32,9 @@ def store():
         with open("resources/users.json", "w+") as f:
             users = json.load(f)
             users["servers"].append(data)
+            f.seek(0)
+            json.dump(users, f, indent=4)
+            f.truncate()
     
     return "OK", 200
 
