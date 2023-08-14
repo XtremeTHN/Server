@@ -1,10 +1,12 @@
-import flask
+from flask import Flask, render_template, request
+import json
+import bcrypt
 
-app = flask.Flask("serv")
+app = Flask("serv")
 
 @app.route("/")
 def run():
-    return flask.render_template_string("""
+    return render_template_string("""
 <!doctype html>
 <html>
     <head>
@@ -15,6 +17,24 @@ def run():
     </body>
 </html>
 """)
+
+@app.route("/store", methods=["POST"])
+def store():
+    if request.method == "POST":
+        data = json.loads(request.data.decode())
+        if "name" and "password" not in data:
+            return 400
+        
+        bobj = bcrypt.gensalt()
+        hashed = bcrypt.hashpw(data["password"].encode(), bobj)
+        data["password"] = hashed.decode()
+
+        with open("resources/users.json", "w+") as f:
+            users = json.load(f)
+            users["servers"].append(data)
+    
+    return 200
+
 
 
 if __name__ == "__main__":
