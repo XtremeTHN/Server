@@ -8,10 +8,10 @@ def run():
 <!doctype html>
 <html>
     <head>
-        <title>Hello World!</title>
+        <title>Warning</title>
     </head>
     <body>
-        <p>Hi there!</p>
+        <p>This is a api, not a website, please do not visit with your browser</p>
     </body>
 </html>
 """)
