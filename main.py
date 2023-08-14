@@ -29,7 +29,7 @@ def store():
         hashed = bcrypt.hashpw(data["password"].encode(), bobj)
         data["password"] = hashed.decode()
 
-        with open("resources/users.json", "w+") as f:
+        with open("resources/users.json", "r+") as f:
             users = json.load(f)
             users["servers"].append(data)
             f.seek(0)

@@ -1,3 +1,8 @@
 {
-    "servers": []
+    "servers": [
+        {
+            "name": "test",
+            "password": "$2b$12$q67cZvQJiCDXlu1as/QNSeeJKNyjReUYcNgoT04RVQEIvGevJfL4m"
+        }
+    ]
 }
