@@ -42,7 +42,7 @@ def store():
 @app.route("/get_users", methods=["GET"])
 def get_users():
     passw = request.get_json()
-    if bcrypt.checkpw(passw["password"].encode() if "password" in passw else 0, PASSWORD.encode()):
+    if bcrypt.checkpw(passw["password"].encode() if "password" in passw else "0".encode(), PASSWORD.encode()):
         return "Access Denied", 403
     with open("resources/users.json", "r") as f:
         return f.read(), 200
