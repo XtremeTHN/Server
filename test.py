@@ -6,5 +6,5 @@ data = {
     "password": "xtremepc.axel4"
 }
 
-rq.post(url + "/store", json=data)
-print(rq.get(url + "/get_users", json={"authentication":"xtremepc.axel3"}).content)
+# rq.post(url + "/store", json=data)
+print(rq.get(url + "/get_users", json={"authentication":"xtremepc.axel3"}).content.decode())

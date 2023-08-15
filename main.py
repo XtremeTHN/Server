@@ -39,14 +39,18 @@ def store():
             f.truncate()
     return "OK", 200
 
-@app.route("/get_users", methods=["GET"])
-def get_users():
+@app.route("/get_servers", methods=["GET"])
+def get_servers():
     passw = request.get_json()
-    if bcrypt.checkpw(passw["password"].encode() if "password" in passw else "0".encode(), PASSWORD.encode()):
-        return "Access Denied", 403
     with open("resources/users.json", "r") as f:
-        return f.read(), 200
-
+        json_file = json.load(f)
+        servers = {"servers": []}
+        for x in servers["servers"]:
+            del x["password"]
+            servers["servers"].append(x)
+        return servers, 200
+# if x["name"] == passw["name"] and x["password"] == passw["password"]:
+#     return "OK", 200
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
