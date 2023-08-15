@@ -3,6 +3,13 @@ import json
 import bcrypt
 import logging
 
+logging.basicConfig(
+    level=logging.DEBUG,  # Nivel de registro mínimo
+    filename='app.log',  # Nombre del archivo de logs
+    filemode='w',  # Modo de apertura del archivo ('w' para sobrescribir, 'a' para añadir)
+    format='%(asctime)s - %(levelname)s - %(message)s'  # Formato de registro
+)
+
 logger = logging.getLogger("WEB")
 
 app = Flask("serv")
