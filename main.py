@@ -58,10 +58,8 @@ def get_servers():
         servers = {"servers": []}
         logger.info("Removing passwords from the json file...")
         for x in servers["servers"]:
-            print(x)
             del x["password"]
-            print(x, servers["servers"][x])
-            logger.info("{}{}".format(x, servers["servers"][x]))
+            logger.info("s {}{}".format(x, servers["servers"][x]))
             servers["servers"].append(x)
         
         logger.info("Successfuly removed passwords from the json file.")
