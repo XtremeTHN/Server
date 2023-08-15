@@ -57,7 +57,7 @@ def get_servers():
         json_file = json.load(f)
         servers = {"servers": []}
         logger.info("Removing passwords from the json file...")
-        for x in servers["servers"]:
+        for x in json_file["servers"]:
             logger.info("For loop")
             del x["password"]
             logger.info("s {}{}".format(x, servers["servers"][x]))
