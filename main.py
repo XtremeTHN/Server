@@ -4,6 +4,8 @@ import bcrypt
 
 app = Flask("serv")
 
+PASSWORD="$2b$12$xXTfDqK.cS6xkXObO7ypluljUd8u//FO6dCG2bGmSWg2OFqMgp4ta"
+
 @app.route("/")
 def run():
     return render_template_string("""
@@ -35,9 +37,15 @@ def store():
             f.seek(0)
             json.dump(users, f, indent=4)
             f.truncate()
-    
     return "OK", 200
 
+@app.route("/get_users", methods=["GET"])
+def get_users():
+    passw = request.get_json()
+    if passw["authentication"] != PASSWORD:
+        return "Access Denied", 403
+    with open("resources/users.json", "r") as f:
+        return f.read(), 200
 
 
 if __name__ == "__main__":

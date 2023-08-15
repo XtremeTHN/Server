@@ -1,9 +1,10 @@
 import requests as rq
 
-url = "http://192.168.0.104:8080/store"
+url = "http://192.168.0.102:8080"
 data = {
-    "name": "test",
-    "password": "xtremepc.axel3"
+    "name": "test2",
+    "password": "xtremepc.axel4"
 }
 
-rq.post(url, json=data)
+rq.post(url + "/store", json=data)
+print(rq.get(url + "/get_users", json={"authentication":"xtremepc.axel3"}).content)
