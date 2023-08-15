@@ -58,11 +58,8 @@ def get_servers():
         servers = {"servers": []}
         logger.info("Removing passwords from the json file...")
         for x in json_file["servers"]:
-            logger.info("For loop")
             del x["password"]
-            logger.info("s {}{}".format(x, servers["servers"][x]))
             servers["servers"].append(x)
-        logger.debug(f"{servers}")
         logger.info("Successfuly removed passwords from the json file.")
         return servers, 200
 # if x["name"] == passw["name"] and x["password"] == passw["password"]:
