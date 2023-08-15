@@ -7,4 +7,4 @@ data = {
 }
 
 # rq.post(url + "/store", json=data)
-print(rq.get(url + "/get_users", json={"authentication":"xtremepc.axel3"}).content.decode())
+print(rq.get(url + "/get_servers", json={"authentication":"xtremepc.axel3"}).content.decode())

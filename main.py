@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request
 import json
 import bcrypt
+import logging
+
+logger = logging.getLogger("WEB")
 
 app = Flask("serv")
 
@@ -41,13 +44,18 @@ def store():
 
 @app.route("/get_servers", methods=["GET"])
 def get_servers():
+    logger.info("Getting servers...")
     passw = request.get_json()
     with open("resources/users.json", "r") as f:
         json_file = json.load(f)
         servers = {"servers": []}
+        logger.info("Removing passwords from the json file...")
         for x in servers["servers"]:
             del x["password"]
+            logger.info("{}{}".format(x, servers["servers"][x]))
             servers["servers"].append(x)
+        
+        logger.info("Successfuly removed passwords from the json file.")
         return servers, 200
 # if x["name"] == passw["name"] and x["password"] == passw["password"]:
 #     return "OK", 200
